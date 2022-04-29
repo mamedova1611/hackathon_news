@@ -1,0 +1,99 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>О компании</title>
+    <link rel="shortcut icon" href="{% static 'img/logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/news.css' %}">
+</head>
+
+<header >
+        
+  <header >
+        
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id = "nb">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" class="card-img-top" alt="..."> </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">  </ul>
+          <h3 style="color: aliceblue;"> О компании </h3>
+        </div>
+        <a type="button" class="btn btn-warning position-relative" id="autorization" href = "{% url 'admin:index' %}">
+          Авторизация </a>
+        </a>
+        <br>
+        
+      </div>
+    </nav>
+  
+  
+  
+  
+  
+  </header>
+
+
+
+<body>
+
+<br>
+<h2 style="text-align: center;">{{ predpriyatie.full_name }}</h2>
+<hr>
+<br>
+<div class="news-borders"> <p style="font-size: 13pt;">{{ predpriyatie.history }}</p></div>
+
+    <br>
+    <div class="news-borders">
+      <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">Наши контакты</div>
+        <div class="card-body">
+          <p class="card-text"><b> Адрес:</b> {{ predpriyatie.address }}</p>
+          <p class="card-text"><b>Телефон:</b> {{ predpriyatie.phone }}</p>
+          <p class="card-text"><b>Руководитель:</b> {{ predpriyatie.fio_ruk }}</p>
+        </div>
+      </div>
+    
+   
+
+  </div>
+</div>
+</body>
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        
+      </div>
+
+      <div class="col-xs-6 col-md-3" style="position: relative; left: -500px;">
+        <h6>Технологии, которые были применены</h6>
+        <p style="color: antiquewhite;"> Python, Django, HTML, CSS, Bootstrap, SQLite </p>
+        <h6>Контакты</h6>
+        <p style="color: antiquewhite;"> elisadoollie@gmail.com </p>
+        <p style="color: antiquewhite;"> meva161100@gmail.com </p>
+      </div>
+
+      
+    </div>
+    <hr>
+  </div>
+  <div class="container" style="position:relative; left: 600px">
+    <div class="row">
+      <div class="col-md-8 col-sm-6 col-xs-12">
+        <p class="copyright-text">Copyright &copy; 2022 КарТУ
+      </div>
+
+    </div>
+  </div>
+</footer>
+</html>
+
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Подробнее о новостях</title>
+    <link rel="shortcut icon" href="{% static 'img/logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/news.css' %}">
+</head>
+
+<header >
+        
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id = "nb">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" class="card-img-top" alt="..."> </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">  </ul>
+        <h3 style="color: aliceblue;"> Новости </h3>
+      </div>
+      <a type="button" class="btn btn-warning position-relative" id="autorization" href = "{% url 'admin:index' %}">
+        Авторизация </a>
+      </a>
+      <br>
+      
+    </div>
+  </nav>
+
+
+
+
+
+</header>
+
+<body>
+  <div class="news-borders">
+    <br>
+   <h3 style="text-align: center;"> Тема: {{ news.title }} </h3>
+   <hr>
+    <p>{{ news.content }}</p>
+    <p>{{ news.activity }}</p>
+    
+    {% if news.file %}
+    <img class="upload" src="{{ news.file.url }}">
+    {% endif %}
+    <br>
+
+    <h3>Комментарии</h3>
+    {% if existing_comments %}
+    <ul>
+        {% for com in existing_comments %}
+                <div class="text-dark bg-light mb-2" >
+                  <div class="card-body">
+                    <h5 class="card-title">{{ com.username }}</h5>
+                    <p class="card-text">{{ com.text }}</p>
+                </div>
+              <br>
+              </div>
+
+        {% endfor %}
+    </ul>
+    {% else %}
+
+    <p>Комментариев нет</p>
+    {% endif %}
+
+    <h3>Создать комментарий</h3>
+    <div class="input-group mb-3">
+    <form method="post" action="{% url 'news_detail' news.id %}">
+    {% csrf_token %}
+    {{ comment_form|crispy }}
+    <br>
+    <button type="submit" class="btn btn-primary">Комментировать</button>
+    </form>
+
+    </div>
+  </div>
+</body>
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        
+      </div>
+
+      <div class="col-xs-6 col-md-3" style="position: relative; left: -500px;">
+        <h6>Технологии, которые были применены</h6>
+        <p style="color: antiquewhite;"> Python, Django, HTML, CSS, Bootstrap, SQLite </p>
+        <h6>Контакты</h6>
+        <p style="color: antiquewhite;"> elisadoollie@gmail.com </p>
+        <p style="color: antiquewhite;"> meva161100@gmail.com </p>
+      </div>
+
+      
+    </div>
+    <hr>
+  </div>
+  <div class="container" style="position:relative; left: 600px">
+    <div class="row">
+      <div class="col-md-8 col-sm-6 col-xs-12">
+        <p class="copyright-text">Copyright &copy; 2022 КарТУ
+      </div>
+
+    </div>
+  </div>
+</footer>
+</html>
+
+{% endblock %}
